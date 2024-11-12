@@ -49,3 +49,15 @@ def crawl_website(
             pass
     
         return {"links": list(crawled_links)}
+
+
+
+if __name__ == '__main__':
+    import streamlit as st
+    st.title("Web Crawler API")
+    st.write(crawl_website.__doc__)
+    root_url = st.text_input("Root URL to crawl")
+    depth = st.number_input("Crawl Depth", min_value=1, step=1)
+    if st.button("Crawl"):
+        result = crawl_website(root_url, depth)
+        st.write(result)
